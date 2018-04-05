@@ -1,17 +1,20 @@
-..scene {
-  width: 300px;
-  height: 300px;
+.scene {
   margin: 75px auto 0;
   perspective: 1200px;
+  height: 100vh;
 }
 
 .cube {
   position: relative;
+  top:50%;
+  left:50%;
   width: 300px;
   height: 300px;
+  margin-left: -150px;
+  margin-top: -300px;
   transform-style: preserve-3d;
   transform: translateZ(150px) rotateX(0deg);
-  animation: example 15s linear infinite;
+  animation: example 10s linear infinite;
 
 }
 
@@ -56,6 +59,11 @@
   animation: front 15s linear infinite;
 }
 
+
+.left span {
+  animation: left 15s linear infinite;
+}
+
 .guides {
   position: absolute;
   top: 0;
@@ -76,17 +84,25 @@
   border-left: 1px dotted;
 }
 
-.back {
-  transform: translateZ(-150px) rotateX(180deg);
-}
-.top {
-  transform: translateX(-150px) rotateY(90deg);
-}
-.bottom {
-  transform: translateX(150px) rotateY(270deg);
-}
 .front {
   transform: translateZ(150px);
+}
+.left {
+  transform: translateX(-150px) rotateY(270deg);
+}
+.bottom {
+  transform: translateY(150px) rotateX(270deg) rotateZ(270deg);
+}
+.right {
+  transform: translateX(150px)   rotateX(90deg) rotateY(90deg);;
+}
+
+.back {
+  transform: translateZ(-150px) rotateX(180deg)  rotateZ(270deg);
+}
+
+.top {
+  transform: translateY(-150px)  rotateX(90deg);
 }
 
 .back {
@@ -101,20 +117,27 @@
 .front {
   background-image: url(https://askd.github.io/codepen/front.jpg);
 }
+.left {
+  background-image: url(https://askd.github.io/codepen/back.jpg);
+}
 
-@keyframes example {
-  0% { transform: translateZ(-150px) rotateY(0deg); }
-	15% { transform: translateZ(-150px) rotateY(90deg); }
-	25% { transform: translateZ(-150px) rotateY(90deg); }
-	40% { transform: translateZ(-150px) rotateY(180deg); }
-	50% { transform: translateZ(-150px) rotateY(180deg); }
-	65% { transform: translateZ(150px) rotateY(270deg); }
-	75% { transform: translateZ(150px) rotateY(270deg); }
-	90% { transform: translateZ(150px) rotateY(360deg); }
-	100% { transform: translateZ(150px) rotateY(360deg); }
+.right {
+  background-image: url(https://askd.github.io/codepen/front.jpg);
 }
 
 
+
+
+@keyframes example {
+  0% { transform: translateZ(150px) rotateY(0deg); }
+  15% { transform:translateX(-150px)  rotateY(90deg); }
+  30% { transform: translateZ(150px) rotateX(90deg) rotateY(90deg);}
+  50% { transform:translateX(150px) rotateY(-180deg) rotateZ(90deg);}
+  60% {transform: translateY(150px)  rotateY(-90deg)  rotateX(-90deg);}
+  70% {transform:  translateX(-150px) rotateX(-90deg) ;}
+}
+
+/*
 
 @keyframes front {
   0% { transform: translateX(0px) }
@@ -126,6 +149,16 @@
 	75% { transform: translateX(-100px); }
 	90% { transform: translateX(0px); }
 	100% { transform: translateX(0px); }
+}
+
+@keyframes left {
+  0% { transform: translateX(-100px) translateY(0px);}
+  15% { transform: translateX(100px) translateY(0px); }
+  25% { transform: translateX(50px) translateY(0px);; }
+  65% { transform: translateY(100px) translateY(0px);; }
+  75% { transform: translateY(100px); }
+  90% { transform: translateY(0px); }
+  100% { transform: translateY(0px); }
 }
 @keyframes bottom {
   0% { transform: translateX(0px) }
